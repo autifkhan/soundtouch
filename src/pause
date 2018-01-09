@@ -1,0 +1,10 @@
+#!/bin/bash
+
+IP=$1
+
+if [ "x${IP}" == "x" ]; then
+    echo "Usage: $0 <IP>"
+    exit
+fi
+
+curl -d '<key state="press" sender="Gabbo">PAUSE</key>' http://${IP}:8090/key

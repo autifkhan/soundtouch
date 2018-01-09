@@ -1,0 +1,19 @@
+#!/bin/bash
+
+V=$1
+
+for i in `./devices | sort`
+do
+    echo ==========
+    ./name $i
+    ./id $i
+    ./version $i
+    ./marge $i
+    echo $i
+    if [ "x${V}" == "x-v" ]; then
+        ./zone $i
+        ./np $i | head
+    fi
+    echo
+done
+

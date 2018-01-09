@@ -1,0 +1,11 @@
+#!/bin/bash
+
+IP=$1
+VOL=$2
+
+if [ "x${IP}" == "x" ] || [ "x${VOL}" == "x" ]; then
+    echo "Usage: $0 <IP> <volume>"
+    exit
+fi
+
+curl -d "<volume>${VOL}</volume>" http://${IP}:8090/volume

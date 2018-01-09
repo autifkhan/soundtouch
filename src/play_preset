@@ -1,0 +1,11 @@
+#!/bin/bash
+
+IP=$1
+P=$2
+
+if [ "x${IP}" == "x" ] || [ "x${P}" == "x" ]; then
+    echo "Usage: $0 <IP> <preset number>"
+    exit
+fi
+
+curl -d "<key state=\"release\" sender=\"Gabbo\">PRESET_${P}</key>" http://${IP}:8090/key

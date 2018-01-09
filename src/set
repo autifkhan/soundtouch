@@ -1,0 +1,14 @@
+#!/bin/bash
+
+IP=$1
+SLAVE=$2
+
+if [ "x${IP}" == "x" ] || [ "x${SLAVE}" == "x" ]; then
+    echo "Usage: $0 <IP> <slave id>"
+    exit
+fi
+
+MASTER_ID=`./id ${IP}`
+SLAVE_ID=`./id ${SLAVE}`
+
+curl -d "<zone master=\"$MASTER_ID\"><member ipaddress=\"${SLAVE}\">${SLAVE_ID}</member></zone>" http://${IP}:8090/setZone

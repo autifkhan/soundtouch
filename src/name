@@ -1,0 +1,10 @@
+#!/bin/bash
+
+IP=$1
+
+if [ "x${IP}" == "x" ]; then
+    echo "Usage: $0 <IP>"
+    exit
+fi
+
+curl -s http://${IP}:8090/info | xmllint --format - | grep name | cut -d'>' -f 2 | cut -d'<' -f1

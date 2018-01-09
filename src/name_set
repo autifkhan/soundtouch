@@ -1,0 +1,11 @@
+#!/bin/bash
+
+IP=$1
+NAME=$2
+
+if [ "x${IP}" == "x" ] || [ "x${NAME}" == "x" ]; then
+    echo "Usage: $0 <IP> <name>"
+    exit
+fi
+
+curl -d "<name>${NAME}</name>" http://${IP}:8090/name

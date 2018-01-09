@@ -1,0 +1,11 @@
+#!/bin/bash
+
+IP=$1
+BASS=$2
+
+if [ "x${IP}" == "x" ] || [ "x${BASS}" == "x" ]; then
+    echo "Usage: $0 <IP> <BASS>"
+    exit
+fi
+
+curl -d "<bass>${BASS}</bass>" http://${IP}:8090/bass
