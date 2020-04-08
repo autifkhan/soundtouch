@@ -1,0 +1,22 @@
+#!/bin/bash
+
+IP=$1
+URL=$2
+CONSUMER_KEY=$3
+
+if [ "x${IP}" == "x" ] || [ "x${URL}" == "x" ]; then
+    echo "Usage: $0 <IP> <URL> [<CONSUMER_KEY>]"
+    exit
+fi
+
+if [ "x${CONSUMER_KEY}" != "x" ]; then
+    KEY=CONSUMER_KEY
+elif [ "x${AUDIO_NOTIFICATIONS_CONSUMER_KEY}" != "x" ]; then
+    KEY=${AUDIO_NOTIFICATIONS_CONSUMER_KEY}
+else
+    echo "Must set evironment variable AUDIO_NOTIFICATIONS_CONSUMER_KEY or provide CONSUMER_KEY"
+    echo "Usage: $0 <IP> <URL> [<CONSUMER_KEY>]"
+    exit
+fi
+
+curl -d "<play_info><app_key>${KEY}</app_key><url>${URL}</url><service>ScareSpouse</service></play_info>" http://${IP}:8090/speaker
